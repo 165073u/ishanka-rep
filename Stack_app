@@ -1,0 +1,116 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package stackdemoapp;
+
+/**
+ *
+ * @author Student
+ */
+public class StackDemoApp {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) throws Exception {
+        StackArray sa = new StackArray(5);
+        sa.push(7);
+        sa.push(9);
+        sa.push(-1);
+        sa.push(23);
+        sa.push(-9);
+        sa.display();
+        sa.push(5);
+        sa.display();
+        try{
+        sa.pop();
+        sa.pop();
+        sa.pop();
+        sa.pop();
+        sa.pop();
+        sa.pop();
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        sa.display();
+        StackDemoApp sda=new StackDemoApp();
+        sda.Conversion(11);
+    }
+    public void Conversion(int num){
+        int div,rem;
+        div=num;
+        StackArray sa=new StackArray(50);
+        while(div!=0){
+            rem=div%2;
+            div=div/2;
+        }
+    }
+}
+class StackArray{
+    private int maxSize;
+    private int[] stackData;
+    private int top;
+    
+    public StackArray(int s){
+        this.maxSize=s;
+        this.top=-1;
+        this.stackData=new int [s];
+    }
+    public boolean isEmpty(){
+      /**if(top==-1){
+          return true;
+      } else {
+          return false;
+      } we can write this in one line **/
+      return top==-1;
+    }
+    
+    public boolean isFull(){
+        /**if(maxSize-1==top){
+            return true;
+        } else {
+            return false;
+        }**/
+        return maxSize-1==top;
+    }
+    
+    public void push(int j){
+        if(isFull()){
+            System.out.println("Stack is full cannot pop.");
+        } else {
+            this.top++;
+            this.stackData[top]=j; //put the j
+        }
+    }
+    
+    public int pop() throws Exception{
+      
+     
+        if(isEmpty()){
+            throw new Exception("Stack is empty cannot pop");
+        } else {
+            return stackData[top--];
+        }
+    }
+    
+    public int peek() throws Exception{
+        if(isEmpty()){
+            throw new Exception("Stack is empty cannot peek");
+        } else {
+            return stackData[top];
+        }  
+    }
+    public void display(){
+        if(isEmpty()){
+            System.out.println("Stack is empty nothing to display");
+        } else {
+            for(int i=top; i>=0; i--){
+                System.out.print(stackData[i]+" ");
+            }
+        System.out.println();
+        }
+    }
+}
